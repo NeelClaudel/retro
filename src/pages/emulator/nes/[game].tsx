@@ -43,7 +43,7 @@ const NES = ({ gamesList, game }: Props) => {
         playPause: false,
         restart: true,
         mute: false,
-        settings: false,
+        settings: true,
         saveState: true,
         loadState: true,
         screenRecord: false,
