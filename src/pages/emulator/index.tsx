@@ -26,7 +26,7 @@ const Emulator = ({ gamesList }: Props) => {
               <Link href="/" className="pb-6 text-xl">
                 RetroWeb
               </Link>
-              <div className="gameContainer aspect-4/3 w-auto border-2 border-light 2xl:h-full">
+              <div className="gameContainer aspect-4/3 w-auto border-2 border-light sm:w-3/4 sm:h-3/4 md:w-2/3 md:h-2/3 lg:w-1/1 lg:h-1/2 2xl:h-full">
                 <h2 className="hidden md:block">
                   Select a game from the menu on the left.
                   <p>{"<-------------"}</p>
