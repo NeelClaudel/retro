@@ -39,11 +39,11 @@ const NES = ({ gamesList, game }: Props) => {
         "save-state-location": "keep in browser",
       };
       window.EJS_Buttons = {
+        fullscreen: true,
         playPause: false,
         restart: true,
         mute: false,
         settings: true,
-        fullscreen: true,
         saveState: true,
         loadState: true,
         screenRecord: false,
