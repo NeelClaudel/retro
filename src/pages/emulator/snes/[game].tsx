@@ -13,6 +13,7 @@ type Props = {
   }[];
   game: string;
 };
+
 const convertToTitle = (str: string) => {
   const newStr = str.replace(".7z", "").replace(/-/g, " ");
   const splitStr = newStr.toLowerCase().split(" ");
@@ -93,13 +94,13 @@ const SNES = ({ gamesList, game }: Props) => {
         },
       };
     }
-  });
+  }, [game]);
 
   const toggleFullscreen = () => {
-    const gameContainer = document.querySelector(".gameContainer");
-    if (gameContainer) {
+    const gameElement = document.querySelector("#game");
+    if (gameElement) {
       if (!document.fullscreenElement) {
-        gameContainer.requestFullscreen();
+        gameElement.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();
@@ -152,12 +153,12 @@ export default SNES;
 export async function getStaticProps(context: { params: { game: string } }) {
   try {
     const gamesFolder = await fs.promises.readdir("./public/games");
-    const gamesList = gamesFolder.map((folder) => {
-      const gamesArr = fs.readdirSync(`./public/games/${folder}`);
+    const gamesList = await Promise.all(gamesFolder.map(async (folder) => {
+      const gamesArr = await fs.promises.readdir(`./public/games/${folder}`);
       return {
         [folder]: gamesArr,
       };
-    });
+    }));
     const gameName = context.params.game;
     return {
       props: {
@@ -167,6 +168,12 @@ export async function getStaticProps(context: { params: { game: string } }) {
     };
   } catch (err) {
     console.log(err);
+    return {
+      props: {
+        gamesList: [],
+        game: '',
+      },
+    };
   }
 }
 

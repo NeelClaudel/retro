@@ -96,10 +96,10 @@ const NES = ({ gamesList, game }: Props) => {
   });
 
   const toggleFullscreen = () => {
-    const gameContainer = document.querySelector(".gameContainer");
-    if (gameContainer) {
+    const gameElement = document.querySelector("#game");
+    if (gameElement) {
       if (!document.fullscreenElement) {
-        gameContainer.requestFullscreen();
+        gameElement.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();

@@ -13,12 +13,12 @@ type Props = {
   }[];
   game: string;
 };
+
 const convertToTitle = (str: string) => {
   const newStr = str.replace(".7z", "").replace(/-/g, " ");
   const splitStr = newStr.toLowerCase().split(" ");
   for (let i = 0; i < splitStr.length; i++) {
     splitStr[i] =
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       splitStr[i]!.charAt(0).toUpperCase() + splitStr[i]!.substring(1);
   }
   return splitStr.join(" ");
@@ -37,8 +37,6 @@ const N64 = ({ gamesList, game }: Props) => {
       window.EJS_DEBUG_XX = true;
       window.EJS_defaultOptions = {
         "save-state-location": "keep in browser",
-        desmune_num_cores: "4",
-        desmune_screens_layout: "left/right",
       };
       window.EJS_Buttons = {
         playPause: false,
@@ -95,7 +93,7 @@ const N64 = ({ gamesList, game }: Props) => {
         },
       };
     }
-  });
+  }, [game]);
 
   const toggleFullscreen = () => {
     const gameContainer = document.querySelector(".gameContainer");
@@ -154,12 +152,14 @@ export default N64;
 export async function getStaticProps(context: { params: { game: string } }) {
   try {
     const gamesFolder = await fs.promises.readdir("./public/games");
-    const gamesList = gamesFolder.map((folder) => {
-      const gamesArr = fs.readdirSync(`./public/games/${folder}`);
-      return {
-        [folder]: gamesArr,
-      };
-    });
+    const gamesList = await Promise.all(
+      gamesFolder.map(async (folder) => {
+        const gamesArr = await fs.promises.readdir(`./public/games/${folder}`);
+        return {
+          [folder]: gamesArr,
+        };
+      })
+    );
     const gameName = context.params.game;
     return {
       props: {
@@ -169,6 +169,12 @@ export async function getStaticProps(context: { params: { game: string } }) {
     };
   } catch (err) {
     console.log(err);
+    return {
+      props: {
+        gamesList: [],
+        game: "",
+      },
+    };
   }
 }
 
