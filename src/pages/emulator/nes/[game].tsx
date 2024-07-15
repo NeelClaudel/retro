@@ -15,12 +15,12 @@ type Props = {
   }[];
   game: string;
 };
+
 const convertToTitle = (str: string) => {
   const newStr = str.replace(".7z", "").replace(/-/g, " ");
   const splitStr = newStr.toLowerCase().split(" ");
   for (let i = 0; i < splitStr.length; i++) {
     splitStr[i] =
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       splitStr[i]!.charAt(0).toUpperCase() + splitStr[i]!.substring(1);
   }
   return splitStr.join(" ");
@@ -96,16 +96,16 @@ const NES = ({ gamesList, game }: Props) => {
       };
       // window.EJS_biosUrl = "/games/nes/disksys.rom";
     }
-  });
+  }, [game]);
 
   const toggleFullscreen = () => {
     const gameElement = document.querySelector("#game");
     if (gameElement) {
       if (!document.fullscreenElement) {
-        gameElement.requestFullscreen();
+        void gameElement.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          void document.exitFullscreen();
         }
       }
     }
@@ -155,12 +155,14 @@ export default NES;
 export async function getStaticProps(context: { params: { game: string } }) {
   try {
     const gamesFolder = await fs.promises.readdir("./public/games");
-    const gamesList = gamesFolder.map((folder) => {
-      const gamesArr = fs.readdirSync(`./public/games/${folder}`);
-      return {
-        [folder]: gamesArr,
-      };
-    });
+    const gamesList = await Promise.all(
+      gamesFolder.map(async (folder) => {
+        const gamesArr = await fs.promises.readdir(`./public/games/${folder}`);
+        return {
+          [folder]: gamesArr,
+        };
+      })
+    );
     const gameName = context.params.game;
     return {
       props: {
@@ -170,6 +172,12 @@ export async function getStaticProps(context: { params: { game: string } }) {
     };
   } catch (err) {
     console.log(err);
+    return {
+      props: {
+        gamesList: [],
+        game: "",
+      },
+    };
   }
 }
 

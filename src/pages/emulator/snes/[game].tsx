@@ -102,10 +102,10 @@ const SNES = ({ gamesList, game }: Props) => {
     const gameElement = document.querySelector("#game");
     if (gameElement) {
       if (!document.fullscreenElement) {
-        gameElement.requestFullscreen();
+        void gameElement.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          void document.exitFullscreen();
         }
       }
     }
@@ -155,12 +155,14 @@ export default SNES;
 export async function getStaticProps(context: { params: { game: string } }) {
   try {
     const gamesFolder = await fs.promises.readdir("./public/games");
-    const gamesList = await Promise.all(gamesFolder.map(async (folder) => {
-      const gamesArr = await fs.promises.readdir(`./public/games/${folder}`);
-      return {
-        [folder]: gamesArr,
-      };
-    }));
+    const gamesList = await Promise.all(
+      gamesFolder.map(async (folder) => {
+        const gamesArr = await fs.promises.readdir(`./public/games/${folder}`);
+        return {
+          [folder]: gamesArr,
+        };
+      })
+    );
     const gameName = context.params.game;
     return {
       props: {
@@ -173,7 +175,7 @@ export async function getStaticProps(context: { params: { game: string } }) {
     return {
       props: {
         gamesList: [],
-        game: '',
+        game: "",
       },
     };
   }

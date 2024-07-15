@@ -21,7 +21,6 @@ const convertToTitle = (str: string) => {
   const splitStr = newStr.toLowerCase().split(" ");
   for (let i = 0; i < splitStr.length; i++) {
     splitStr[i] =
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       splitStr[i]!.charAt(0).toUpperCase() + splitStr[i]!.substring(1);
   }
   return splitStr.join(" ");
@@ -104,10 +103,10 @@ const NDS = ({ gamesList, game }: Props) => {
     const gameContainer = document.querySelector(".gameContainer");
     if (gameContainer) {
       if (!document.fullscreenElement) {
-        gameContainer.requestFullscreen();
+        void gameContainer.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          void document.exitFullscreen();
         }
       }
     }

@@ -102,10 +102,10 @@ const GBA = ({ gamesList, game }: Props) => {
     const gameContainer = document.querySelector(".gameContainer");
     if (gameContainer) {
       if (!document.fullscreenElement) {
-        gameContainer.requestFullscreen();
+        void gameContainer.requestFullscreen();
       } else {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          void document.exitFullscreen();
         }
       }
     }
