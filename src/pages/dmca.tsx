@@ -54,15 +54,6 @@ const DMCA = () => {
               and complete removal requests within 5 working days. We are
               DMCA-compliant and happy to work with you.
             </p>
-            <p>
-              To request removal of data, please send a removal request to
-              nasturasstefan [at] outlook [dot] com. In your request, please
-              make sure you identify the work, the URL of the page where it
-              appears, your contact information, and your electronic or physical
-              signature. Please note that you must own or represent the
-              copyrights pertaining to the request. You will receive a
-              confirmation once your request has been processed.
-            </p>
             <p>Catistio [at] gmail [dot] com</p>
             <h2 className="text-5xl md:text-7xl">Copyrights</h2>
             <p>

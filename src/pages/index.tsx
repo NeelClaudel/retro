@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import Layout from "~/components/Layout";
-import MagicButton from "~/components/UI/MagicButton";
+//import MagicButton from "~/components/UI/MagicButton";
 import animationData from "../data/confetti.json";
 import Lottie from "react-lottie";
 import { IoCopyOutline } from "react-icons/io5";
@@ -218,17 +218,17 @@ const handleCopy = () => {
                 className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
                   }`}
               >
-                {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                {/* <img src="/confetti.gif" alt="confetti" /> 
+                <Lottie options={defaultOptions} height={200} width={400} />*/}
               </div>
 
-              <MagicButton
+              {/*<MagicButton
                 title={copied ? "CA is Copied!" : "Copy Contract Address"}
                 icon={<IoCopyOutline />}
                 position="left"
                 handleClick={handleCopy}
                 otherClasses="!bg-[#161A31]"
-              />
+              />*/}
             </div>
             <p className="text-center text-lg md:text-2xl">
               Catistio flex right in your wallet.
