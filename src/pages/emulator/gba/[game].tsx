@@ -128,12 +128,12 @@ const GBA = ({ gamesList, game }: Props) => {
               <div className="gameContainer aspect-4/3 w-auto border-2 border-light 2xl:h-full">
                 <div id="game"></div>
               </div>
-              <button
+              {/*<button
                 onClick={toggleFullscreen}
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
               >
                 Toggle Fullscreen
-              </button>
+              </button>*/}
               <p className="pt-3 text-center">
                 For the best experience, enter fullscreen
                 <br />
