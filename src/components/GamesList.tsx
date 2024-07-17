@@ -14,8 +14,7 @@ const convertToTitle = (str: string) => {
     .replace(/-/g, " ");
   const splitStr = newStr.toLowerCase().split(" ");
   for (let i = 0; i < splitStr.length; i++) {
-    splitStr[i] =
-      splitStr[i]!.charAt(0).toUpperCase() + splitStr[i]!.substring(1);
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
   }
   return splitStr.join(" ");
 };
@@ -35,13 +34,13 @@ const GamesList = ({ gamesList }: Props) => {
             const games = Object.values(platform)[0];
             return (
               <li key={consoleName}>
-                {consoleName!.toUpperCase()}:
+                {consoleName.toUpperCase()}:
                 <ul className="pl-6 drop-shadow-2xl">
-                  {games!.map((game: string) => {
+                  {games.map((game: string) => {
                     return (
                       <li key={game}>
                         <a
-                          href={`/emulator/${consoleName!}/${game
+                          href={`/emulator/${consoleName}/${game
                             .replace(".7z", "")
                             .replace(".jsdos", "")}`}
                         >
