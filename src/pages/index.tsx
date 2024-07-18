@@ -12,6 +12,11 @@ import { IoCopyOutline } from "react-icons/io5";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import ProgressSlider from "~/components/UI/progress-slider";
+
+
+
+
 const Home: NextPage = () => {
 
 const [copied, setCopied] = useState(false);
@@ -30,6 +35,9 @@ const handleCopy = () => {
   navigator.clipboard.writeText(text);
   setCopied(true);
 };
+
+
+
   return (
     <>
       <Head>
@@ -253,6 +261,7 @@ const handleCopy = () => {
               Play!
             </Link>
           </div>
+
         </main>
         <br></br>
         <br></br>
