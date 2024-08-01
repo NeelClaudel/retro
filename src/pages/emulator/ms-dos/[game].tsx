@@ -57,7 +57,13 @@ const Dos = ({ gamesList, game }: Props) => {
           <main className="flex h-screen min-h-screen flex-col items-center justify-center bg-black">
             <div className="container flex w-full flex-col items-center justify-center px-4 py-6 md:h-full lg:w-auto">
               <Link href="/" className="pb-6 text-xl">
-              Catistio Emulator
+              $Cat As Ticker || Emulator
+              </Link>
+              <p className="text-center">
+                CA : So11111111111111111111111111111111111111112
+              </p>
+              <Link href="#" className="pb-6 text-sm">
+              Back To Main Website
               </Link>
               <div className="gameContainer aspect-4/3 h-auto w-screen border-2 border-light xl:h-[800px] xl:w-[800px]">
                 <DosPlayer bundleUrl={`/games/ms-dos/${game}.jsdos`} />

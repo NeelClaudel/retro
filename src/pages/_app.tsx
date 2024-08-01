@@ -10,7 +10,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Component {...pageProps} />
-      <FloatingNav navItems={navItems} />
+      {/*<FloatingNav navItems={navItems} />*/}
       <Analytics />
     </>
   );
